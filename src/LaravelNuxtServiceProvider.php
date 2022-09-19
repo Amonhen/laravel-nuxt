@@ -12,7 +12,7 @@ class LaravelNuxtServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         $this->mergeConfigFrom(
             __DIR__.'/../config/nuxt.php',
@@ -25,7 +25,7 @@ class LaravelNuxtServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         $this->publishes(
             [__DIR__.'/../config/nuxt.php' => config_path('nuxt.php')],

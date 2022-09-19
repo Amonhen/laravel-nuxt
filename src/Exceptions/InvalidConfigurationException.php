@@ -2,16 +2,18 @@
 
 namespace M2S\LaravelNuxt\Exceptions;
 
+use Exception;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\App;
 
-class InvalidConfigurationException extends \Exception
+class InvalidConfigurationException extends Exception
 {
     /**
      * Report the exception.
      *
      * @return void
      */
-    public function report()
+    public function report(): void
     {
         report($this);
     }
@@ -19,11 +21,9 @@ class InvalidConfigurationException extends \Exception
     /**
      * Render the exception into an HTTP response.
      *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function render()
+    public function render(): Response
     {
         if (App::environment(['local', 'staging']) || config('app.debug')) {
             return response('[Laravel/Nuxt]: '.$this->getMessage(), 404);

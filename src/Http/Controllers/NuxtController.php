@@ -10,6 +10,7 @@ class NuxtController
 {
     /**
      * Handle the SPA request.
+     * @throws InvalidConfigurationException
      */
     public function __invoke(Request $request): Response
     {
@@ -24,6 +25,7 @@ class NuxtController
 
     /**
      * Render the Nuxt page.
+     * @throws InvalidConfigurationException
      */
     protected function renderNuxtPage(Request $request): string
     {
@@ -38,6 +40,9 @@ class NuxtController
         return file_get_contents(config('nuxt.source'));
     }
 
+    /**
+     * @throws InvalidConfigurationException
+     */
     protected function checkSsrSource(string $source): bool
     {
         if (!filter_var($source, FILTER_VALIDATE_URL)) {

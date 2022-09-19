@@ -55,9 +55,9 @@ class InstallCommand extends Command
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         $source = base_path($this->argument('source'));
         $yarn = $this->option('yarn') ?: $this->confirm('Use yarn package manager?');
@@ -78,6 +78,8 @@ Please make sure to publish configuration and to adjust the 'prefix' setting acc
             $this->output->write('Publish command: ');
             $this->comment('php artisan vendor:publish --provider="M2S\\LaravelNuxt\\LaravelNuxtServiceProvider"');
         }
+
+        return parent::SUCCESS;
     }
 
     protected function installNuxtRemote(string $source, bool $yarn)
@@ -99,8 +101,8 @@ Please make sure to publish configuration and to adjust the 'prefix' setting acc
                     : 'npm i -D --prefix'
             ).
             " $source ".
-            'nuxt-laravel @nuxtjs/axios'.
-            ($this->option('cache') ? ' @nuxtjs/pwa' : '')
+            'nuxt-laravel @next/axios'.
+            ($this->option('cache') ? ' @next/pwa' : '')
         );
     }
 
