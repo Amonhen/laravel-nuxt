@@ -101,7 +101,7 @@ Please make sure to publish configuration and to adjust the 'prefix' setting acc
                     : 'npm i -D --prefix'
             ).
             " $source ".
-            'nuxt-laravel @next/axios'.
+            'nuxt-laravel @nuxtjs/axios @nuxt/content'.
             ($this->option('cache') ? ' @next/pwa' : '')
         );
     }
